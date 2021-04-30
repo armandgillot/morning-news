@@ -7,6 +7,6 @@ var wishlistShema = mongoose.Schema({
   country: String,
 });
 
-var wishlistModel = mongoose.model("users", wisthlitShema);
+var wishlistModel = mongoose.model("users", wishlistShema);
 
 module.exports = wishlistModel;
