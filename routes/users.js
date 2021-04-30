@@ -20,6 +20,7 @@ router.post("/sign-up", async (req, res, next) => {
       email: req.body.emailUp,
       password: hash,
       token: uid2(32),
+      language: "fr",
     });
     var userSaved = await newUser.save();
     res.json({ result: true, token: newUser.token });
