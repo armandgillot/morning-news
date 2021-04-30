@@ -84,3 +84,6 @@ h4 {
   /* text-shadow: 1px 1px 4px #e25885; */
   text-align: center;
 }
+.border {
+  border: solid black;
+}

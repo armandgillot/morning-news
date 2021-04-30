@@ -46,12 +46,12 @@ function ScreenSource(props) {
       <div className="Banner">
         <Avatar
           onClick={() => changeCountry("fr")}
-          className="flag"
+          className={country === "fr" ? "flag border" : "flag"}
           src={`/images/fr.png`}
         />
         <Avatar
           onClick={() => changeCountry("gb")}
-          className="flag"
+          className={country === "gb" ? "flag border" : "flag"}
           src={`/images/uk.png`}
         />{" "}
       </div>
