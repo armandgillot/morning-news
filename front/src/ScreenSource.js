@@ -4,24 +4,40 @@ import { List, Avatar } from "antd";
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-function ScreenSource() {
+function ScreenSource(props) {
   const [sourceList, setSourceList] = useState([]);
-  const [country, setCountry] = useState("fr");
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     const APIResultsLoading = async () => {
-      const result = await fetch(`/news?country=${country}`);
+      const result = await fetch(`/news?token=${props.token}`);
       const body = await result.json();
       setSourceList(body);
+      setCountry(body.result[0].country);
     };
+    // const getLanguage = async () => {
+    //   const result = await fetch(`/users/getlanguage?token=${props.token}`);
+    //   const body = await result.json();
+    //   setCountry(body.language);
+    // };
+    // getLanguage();
     APIResultsLoading();
   }, []);
-
+  console.log(country);
   var changeCountry = async (country) => {
-    const result = await fetch("/news?country=" + country);
-    const body = await result.json();
-    setSourceList(body);
+    await fetch(`/news?token=${props.token}&country=${country}`, {
+      method: "PUT",
+    });
+    const APIResultsLoading = async () => {
+      const result = await fetch(`/news?token=${props.token}`);
+      const body = await result.json();
+      setSourceList(body);
+      console.log(body);
+    };
+    APIResultsLoading();
+    setCountry(country);
   };
 
   return (
@@ -62,4 +78,8 @@ function ScreenSource() {
   );
 }
 
-export default ScreenSource;
+function mapStateToProps(state) {
+  return { token: state.token };
+}
+
+export default connect(mapStateToProps, null)(ScreenSource);
