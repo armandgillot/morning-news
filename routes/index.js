@@ -34,3 +34,18 @@ router.get("/news-bysource", function (req, res, next) {
 });
 
 module.exports = router;
+
+
+/* ADD AN ARTICLE FROM WISHLIST TO DB */
+router.post('/articles_saved', async function (req, res, next) {
+
+  var newWishlist = new wishlistModel({
+    content: req.body.content,
+    description: req.body.description,
+    urlToImage: req.body.urlToImage,
+
+  });
+  var articleSaved = await newArticleSaved.save();
+  res.json({ result: true, article: newArticleSaved });
+
+})

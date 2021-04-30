@@ -1,12 +1,14 @@
 var mongoose = require("mongoose");
 
-var wishlistShema = mongoose.Schema({
-  name: String,
+var wishlistSchema = mongoose.Schema({
+  // name: String, 
+  content: String,
   description: String,
-  language: String,
-  country: String,
+  urlToImage: String, 
+  // language: String,
+  // country: String,
 });
 
-var wishlistModel = mongoose.model("users", wishlistShema);
+var wishlistModel = mongoose.model("articles", wishlistSchema);
 
 module.exports = wishlistModel;
